@@ -144,3 +144,15 @@ allClear.addEventListener('click', () => {
     answer.textContent = "";
     history.textContent = "";
 });
+
+const plusMinus = document.querySelector(".plusMinus");
+plusMinus.addEventListener('click', () => {
+    let value = answer.textContent;
+    if(value.charAt(0) !== "-"){
+        value = "-" + value;
+    }
+    else if(value.charAt(0) === "-"){
+        value = value.slice(1);
+    }
+    answer.textContent = value;
+});
