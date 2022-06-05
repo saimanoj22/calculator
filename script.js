@@ -46,13 +46,14 @@ function operate(a, operator, b){
 function textAreaUpdate(number){
     const answer = document.querySelector(".answer");
     let value = answer.textContent;
-    if(operatorsArray.includes(history.textContent.slice(-1))){
+    if(operatorToggle){
         answer.textContent = value;
         if(numberToogle){
             value = '';
             value += number;
             answer.textContent = value;   
         }
+        operatorToggle = false;
     }
     else{
         value += number;
@@ -103,6 +104,7 @@ numbers.forEach((number) => {
 const operators = document.querySelectorAll(".operator");
 operators.forEach((operator) => {
     operator.addEventListener('click', () => {
+        operatorToggle = true;
         if(operatorsArray.includes(history.textContent.slice(-1))){
             operatorEqual();
             inputOperator = operator.textContent;
