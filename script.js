@@ -122,3 +122,23 @@ equal.addEventListener('click', () => {
     historyTextUpdate(newValue, "=", true);
     answer.textContent = operate(oldValue, inputOperator, newValue);
 });
+
+const backSpace = document.querySelector(".bc");
+backSpace.addEventListener('click', () => {
+    let value = answer.textContent;
+    if(value != ""){
+        value = value.slice(0, -1);
+    }
+    answer.textContent = value;
+});
+
+const allClear = document.querySelector(".ac");
+allClear.addEventListener('click', () => {
+    let oldValue = 0;
+    let inputOperator;
+    let newValue = 0;
+    let operatorToggle = false;
+    let numberToogle = false;
+    answer.textContent = "";
+    history.textContent = "";
+});
