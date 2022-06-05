@@ -79,6 +79,83 @@ function operatorEqual(){
     answer.textContent = equalValue;
 }
 
+function numbersEventListener() {
+    const numbers = document.querySelectorAll(".number");
+    numbers.forEach((number) => {
+        number.addEventListener('click', () => {
+            numberToogle = true;
+            textAreaUpdate(number.textContent);
+        });
+    });
+}
+
+function operatorsEventListener(){
+    const operators = document.querySelectorAll(".operator");
+    operators.forEach((operator) => {
+        operator.addEventListener('click', () => {
+            operatorToggle = true;
+            if(operatorsArray.includes(history.textContent.slice(-1))){
+                operatorEqual();
+                inputOperator = operator.textContent;
+                historyTextUpdate(oldValue, inputOperator, false);  
+            }
+            else{
+                inputOperator = operator.textContent;
+                oldValue = answer.textContent;
+                historyTextUpdate(oldValue, operator.textContent, false);
+            }
+        });
+    });
+}
+
+function equalEventListener(){
+    const equal = document.querySelector(".equal");
+    equal.addEventListener('click', () => {
+        newValue = answer.textContent;
+        historyTextUpdate(newValue, "=", true);
+        answer.textContent = operate(oldValue, inputOperator, newValue);
+    });
+}
+
+function backSpaceEventListener(){
+    const backSpace = document.querySelector(".bc");
+    backSpace.addEventListener('click', () => {
+        let value = answer.textContent;
+        if(value != ""){
+            value = value.slice(0, -1);
+        }
+        answer.textContent = value;
+    });
+}
+
+function allClearEventListener(){
+    const allClear = document.querySelector(".ac");
+    allClear.addEventListener('click', () => {
+        oldValue = 0;
+        inputOperator;
+        newValue = 0;
+        operatorToggle = false;
+        numberToogle = false;
+        answer.textContent = "";
+        history.textContent = "";
+    });
+}
+
+function plusMinusEventListener(){
+    const plusMinus = document.querySelector(".plusMinus");
+    plusMinus.addEventListener('click', () => {
+        let value = answer.textContent;
+        if(value.charAt(0) !== "-"){
+            value = "-" + value;
+        }
+        else if(value.charAt(0) === "-"){
+            value = value.slice(1);
+        }
+        answer.textContent = value;
+    });  
+}
+
+
 /*******************************/
 
 let oldValue = 0;
@@ -88,71 +165,12 @@ let operatorToggle = false;
 let numberToogle = false;
 let operatorsArray = ["+", "-", "×", "÷", "%"];
 
-const answer = document.querySelector(".answer");
-const history = document.querySelector(".count");
+let answer = document.querySelector(".answer");
+let history = document.querySelector(".count");
 
-
-
-const numbers = document.querySelectorAll(".number");
-numbers.forEach((number) => {
-    number.addEventListener('click', () => {
-        numberToogle = true;
-        textAreaUpdate(number.textContent);
-    });
-});
-
-const operators = document.querySelectorAll(".operator");
-operators.forEach((operator) => {
-    operator.addEventListener('click', () => {
-        operatorToggle = true;
-        if(operatorsArray.includes(history.textContent.slice(-1))){
-            operatorEqual();
-            inputOperator = operator.textContent;
-            historyTextUpdate(oldValue, inputOperator, false);  
-        }
-        else{
-            inputOperator = operator.textContent;
-            oldValue = answer.textContent;
-            historyTextUpdate(oldValue, operator.textContent, false);
-        }
-    });
-});
-
-const equal = document.querySelector(".equal");
-equal.addEventListener('click', () => {
-    newValue = answer.textContent;
-    historyTextUpdate(newValue, "=", true);
-    answer.textContent = operate(oldValue, inputOperator, newValue);
-});
-
-const backSpace = document.querySelector(".bc");
-backSpace.addEventListener('click', () => {
-    let value = answer.textContent;
-    if(value != ""){
-        value = value.slice(0, -1);
-    }
-    answer.textContent = value;
-});
-
-const allClear = document.querySelector(".ac");
-allClear.addEventListener('click', () => {
-    let oldValue = 0;
-    let inputOperator;
-    let newValue = 0;
-    let operatorToggle = false;
-    let numberToogle = false;
-    answer.textContent = "";
-    history.textContent = "";
-});
-
-const plusMinus = document.querySelector(".plusMinus");
-plusMinus.addEventListener('click', () => {
-    let value = answer.textContent;
-    if(value.charAt(0) !== "-"){
-        value = "-" + value;
-    }
-    else if(value.charAt(0) === "-"){
-        value = value.slice(1);
-    }
-    answer.textContent = value;
-});
+numbersEventListener();
+operatorsEventListener();
+equalEventListener();
+backSpaceEventListener();
+allClearEventListener();
+plusMinusEventListener();
