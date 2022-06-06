@@ -19,8 +19,8 @@ function mod(a, b){
 }
 
 function operate(a, operator, b){
-    a = parseFloat(a);
-    b = parseFloat(b);
+    a = Number(a);
+    b = Number(b);
     switch (operator) {
         case "+":
             ans = add(a, b);
@@ -32,15 +32,29 @@ function operate(a, operator, b){
             ans = multiply(a, b);
             break;
         case "÷":
-            ans = divide(a, b);
+            if(b == 0){
+                alert("You cannot divide by 0.");
+                clearAll();
+                ans = 0;
+            }
+            else ans = divide(a, b);
             break;
         case "%":
-            ans = mod(a, b);
+            if(b == 0){
+                alert("You cannot divide by 0.");
+                clearAll();
+                ans = 0;
+            }
+            else ans = mod(a, b);
         default:
             console.log("Invalid operator");
             break;
     }
     return ans;
+}
+
+function clearAll() {
+    document.querySelector(".ac").click();
 }
 
 function textAreaUpdate(number){
@@ -51,7 +65,7 @@ function textAreaUpdate(number){
         if(numberToggle){
             value = '';
             value += number;
-            answer.textContent = value;   
+            answer.textContent = value;
         }
         operatorToggle = false;
     }
@@ -115,15 +129,22 @@ function operatorsEventListener(){
             operatorToggle = true;
             decimalToggle = false;
             equalToggle = true;
-            if(operatorsArray.includes(history.textContent.slice(-1))){
+            numberToggle = false;
+            if(answer.textContent.trim() === ""){
+                inputOperator = operator.textContent;
+                historyTextUpdate(oldValue, inputOperator, false);
+            }
+            if(operatorsArray.includes(history.textContent.slice(-1)) && answer.textContent !== ""){
                 operatorEqual();
                 inputOperator = operator.textContent;
-                historyTextUpdate(oldValue, inputOperator, false);  
+                historyTextUpdate(oldValue, inputOperator, false);
+                answer.textContent = "";
             }
-            else{
+            else if(answer.textContent !== ""){
                 inputOperator = operator.textContent;
                 oldValue = answer.textContent;
-                historyTextUpdate(oldValue, operator.textContent, false);
+                historyTextUpdate(oldValue, inputOperator, false);
+                answer.textContent = "";
             }
         });
     });
@@ -132,7 +153,7 @@ function operatorsEventListener(){
 function equalEventListener(){
     const equal = document.querySelector(".equal");
     equal.addEventListener('click', () => {
-        if(equalToggle){
+        if(equalToggle && answer.textContent !== ""){
             newValue = answer.textContent;
             historyTextUpdate(newValue, "=", true);
             answer.textContent = operate(oldValue, inputOperator, newValue);
@@ -167,6 +188,7 @@ function allClearEventListener(){
         operatorToggle = false;
         numberToggle = false;
         decimalToggle = false;
+        equalToggle = false;
         answer.textContent = "0";
         history.textContent = "";
     });
