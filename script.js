@@ -101,8 +101,7 @@ function numbersEventListener() {
             else{
                 textAreaUpdate(number.textContent);
             }
-            if(isDecimalPresent() === true){
-                console.log(isDecimalPresent());
+            if(isDecimalPresent()){
                 decimalToggle = true;
             }
         });
@@ -146,6 +145,12 @@ function backSpaceEventListener(){
             value = value.slice(0, -1);
         }
         answer.textContent = value;
+        if(isDecimalPresent()){
+            decimalToggle = true;
+        }
+        else{
+            decimalToggle = false;
+        }
     });
 }
 
@@ -153,10 +158,11 @@ function allClearEventListener(){
     const allClear = document.querySelector(".ac");
     allClear.addEventListener('click', () => {
         oldValue = 0;
-        inputOperator;
+        inputOperator = '';
         newValue = 0;
         operatorToggle = false;
         numberToogle = false;
+        decimalToggle = false;
         answer.textContent = "";
         history.textContent = "";
     });
@@ -180,7 +186,7 @@ function plusMinusEventListener(){
 /*******************************/
 
 let oldValue = 0;
-let inputOperator;
+let inputOperator = '';
 let newValue = 0;
 let operatorToggle = false;
 let numberToogle = false;
