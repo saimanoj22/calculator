@@ -33,7 +33,7 @@ main{
 
 .count{
     width: 320px;
-    min-height: 20px;
+    min-height: 30px;
     text-align: right;
     color: white;
     font-size: 25px;
