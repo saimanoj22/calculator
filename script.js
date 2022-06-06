@@ -79,12 +79,32 @@ function operatorEqual(){
     answer.textContent = equalValue;
 }
 
+function isDecimalPresent(){
+    let value = answer.textContent;
+    value = value.split("");
+    if(value.includes(".")){
+        return true;
+    }
+    return false;
+}
+
 function numbersEventListener() {
     const numbers = document.querySelectorAll(".number");
     numbers.forEach((number) => {
         number.addEventListener('click', () => {
             numberToogle = true;
-            textAreaUpdate(number.textContent);
+            if(number.textContent === "."){
+                if(!decimalToggle){
+                    textAreaUpdate(number.textContent);  
+                }
+            }
+            else{
+                textAreaUpdate(number.textContent);
+            }
+            if(isDecimalPresent() === true){
+                console.log(isDecimalPresent());
+                decimalToggle = true;
+            }
         });
     });
 }
@@ -94,6 +114,7 @@ function operatorsEventListener(){
     operators.forEach((operator) => {
         operator.addEventListener('click', () => {
             operatorToggle = true;
+            decimalToggle = false;
             if(operatorsArray.includes(history.textContent.slice(-1))){
                 operatorEqual();
                 inputOperator = operator.textContent;
@@ -163,6 +184,7 @@ let inputOperator;
 let newValue = 0;
 let operatorToggle = false;
 let numberToogle = false;
+let decimalToggle = false;
 let operatorsArray = ["+", "-", "×", "÷", "%"];
 
 let answer = document.querySelector(".answer");
