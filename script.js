@@ -48,7 +48,7 @@ function textAreaUpdate(number){
     let value = answer.textContent;
     if(operatorToggle){
         answer.textContent = value;
-        if(numberToogle){
+        if(numberToggle){
             value = '';
             value += number;
             answer.textContent = value;   
@@ -92,7 +92,7 @@ function numbersEventListener() {
     const numbers = document.querySelectorAll(".number");
     numbers.forEach((number) => {
         number.addEventListener('click', () => {
-            numberToogle = true;
+            numberToggle = true;
             if(number.textContent === "."){
                 if(!decimalToggle){
                     textAreaUpdate(number.textContent);  
@@ -114,6 +114,7 @@ function operatorsEventListener(){
         operator.addEventListener('click', () => {
             operatorToggle = true;
             decimalToggle = false;
+            equalToggle = true;
             if(operatorsArray.includes(history.textContent.slice(-1))){
                 operatorEqual();
                 inputOperator = operator.textContent;
@@ -131,9 +132,12 @@ function operatorsEventListener(){
 function equalEventListener(){
     const equal = document.querySelector(".equal");
     equal.addEventListener('click', () => {
-        newValue = answer.textContent;
-        historyTextUpdate(newValue, "=", true);
-        answer.textContent = operate(oldValue, inputOperator, newValue);
+        if(equalToggle){
+            newValue = answer.textContent;
+            historyTextUpdate(newValue, "=", true);
+            answer.textContent = operate(oldValue, inputOperator, newValue);
+        }
+        equalToggle = false;
     });
 }
 
@@ -161,9 +165,9 @@ function allClearEventListener(){
         inputOperator = '';
         newValue = 0;
         operatorToggle = false;
-        numberToogle = false;
+        numberToggle = false;
         decimalToggle = false;
-        answer.textContent = "";
+        answer.textContent = "0";
         history.textContent = "";
     });
 }
@@ -189,8 +193,9 @@ let oldValue = 0;
 let inputOperator = '';
 let newValue = 0;
 let operatorToggle = false;
-let numberToogle = false;
+let numberToggle = false;
 let decimalToggle = false;
+let equalToggle = false;
 let operatorsArray = ["+", "-", "×", "÷", "%"];
 
 let answer = document.querySelector(".answer");
