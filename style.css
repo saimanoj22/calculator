@@ -1,5 +1,4 @@
 body{
-    background-color: rgb(109, 210, 122, 1);
     margin: 0px;
     display: flex;
     flex-direction: column;
@@ -26,7 +25,6 @@ main{
 }
 
 .textArea{
-    /* background-color: antiquewhite; */
     height: 130px;
     width: 100%;
     margin: 10px 0px 30px 0px;
@@ -71,14 +69,28 @@ button{
     font-weight: 800;
 }
 
-button:hover {
-    /* box-shadow: rgb(255, 255, 255) -2px -2px 5px, rgb(186, 190, 204) 2px 2px 5px; */
-    background-color: aqua;
+.number:hover, .plusMinus:hover {
+    box-shadow:rgb(255, 255, 102) -2px -2px 10px 2px, rgb(255, 255, 102) 2px 2px 10px 2px;
 }
-  
-button:active {
-    /* box-shadow: rgb(186, 190, 204) inset 1px 1px 2px , rgb(255, 255, 255) inset -1px -1px 2px; */
-    background-color: yellowgreen;
+
+.number:active, .plusMinus:active {
+    box-shadow:rgb(255, 255, 102)inset -2px -2px 5px 1px, rgb(255, 255, 102)inset 2px 2px 5px 1px;
+}
+
+.operator:hover{
+    box-shadow: rgb(102, 255, 102) -2px -2px 10px 2px, rgb(102, 255, 102) 2px 2px 10px 2px;
+}
+
+.operator:active{
+    box-shadow: rgb(102, 255, 102)inset -2px -2px 5px 1px, rgb(102, 255, 102)inset 2px 2px 5px 1px;
+}
+
+.ac:hover, .bc:hover{
+    box-shadow: rgb(255, 53, 94) -2px -2px 10px 2px,rgb(255, 53, 94) 2px 2px 10px 2px;
+}
+
+.ac:active, .bc:active{
+    box-shadow: rgb(255, 53, 94)inset -2px -2px 5px 1px,rgb(255, 53, 94)inset 2px 2px 5px 1px;
 }
 
 .equal{
@@ -87,6 +99,14 @@ button:active {
     height: 80px;
     font-weight: 800;
     font-size: 26px;
+}
+
+.equal:hover{
+    background-color: rgb(102, 255, 102);
+}
+
+.equal:active{
+    box-shadow: rgb(102, 255, 102) -2px -2px 10px 2px,rgb(102, 225, 102) 2px 2px 10px 2px;
 }
 
 .rectangle{
@@ -108,6 +128,9 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
+    gap:8px;
+    font-size:24px;
+    background-color: aqua;
 }
 
 .github{
