@@ -63,7 +63,6 @@ function textAreaUpdate(number){
     if(operatorToggle){
         answer.textContent = value;
         if(numberToggle){
-            value = '';
             value += number;
             answer.textContent = value;
         }
@@ -73,6 +72,37 @@ function textAreaUpdate(number){
         value += number;
         answer.textContent = value;
     }
+    answer.textContent = formatValue(answer.textContent);
+}
+
+function formatValue(value){
+    value = value.trim();
+    if(value.charAt(0) === "."){
+        value = "0" + value;
+    }
+    if(value.charAt(0) === "-"){
+        if(value.length === 2){
+            if(value.charAt(1) == "."){
+                value = "-0" + value.slice(1);
+            }
+        }
+        if(value.length === 3){
+            if(value.charAt(1) === "0" && value.charAt(2) != "."){
+                value = "-" + value.slice(2);
+            }
+
+        }
+    }
+    if(value.length === 2 && value.charAt(0) === "0"){
+        if(value.charAt(1) === "."){
+            value = "0" + value.slice(1);
+        }
+        else{
+            value = value.slice(1);
+        }
+    }
+
+    return value;
 }
 
 function historyTextUpdate(number, operator, equalCheck){
@@ -91,6 +121,7 @@ function operatorEqual(){
     let equalValue = operate(oldValue, inputOperator, newValue);
     oldValue = equalValue;
     answer.textContent = equalValue;
+    answer.textContent = formatValue(answer.textContent);
 }
 
 function isDecimalPresent(){
@@ -157,6 +188,7 @@ function equalEventListener(){
             newValue = answer.textContent;
             historyTextUpdate(newValue, "=", true);
             answer.textContent = operate(oldValue, inputOperator, newValue);
+            answer.textContent = formatValue(answer.textContent);
         }
         equalToggle = false;
     });
@@ -170,6 +202,7 @@ function backSpaceEventListener(){
             value = value.slice(0, -1);
         }
         answer.textContent = value;
+        answer.textContent = formatValue(answer.textContent);
         if(isDecimalPresent()){
             decimalToggle = true;
         }
@@ -205,6 +238,7 @@ function plusMinusEventListener(){
             value = value.slice(1);
         }
         answer.textContent = value;
+        answer.textContent = formatValue(answer.textContent);
     });  
 }
 
