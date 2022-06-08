@@ -263,3 +263,31 @@ equalEventListener();
 backSpaceEventListener();
 allClearEventListener();
 plusMinusEventListener();
+
+/***********KEYBOARD SUPPORT************/
+document.addEventListener('keydown', e => {
+    console.log(e.key);
+    if(e.key === "1") document.querySelector(".one").click();
+    if(e.key === "2") document.querySelector(".two").click();
+    if(e.key === "3") document.querySelector(".three").click();
+    if(e.key === "4") document.querySelector(".four").click();
+    if(e.key === "5") document.querySelector(".five").click();
+    if(e.key === "6") document.querySelector(".six").click();
+    if(e.key === "7") document.querySelector(".seven").click();
+    if(e.key === "8") document.querySelector(".eight").click();
+    if(e.key === "9") document.querySelector(".nine").click();
+    if(e.key === "0") document.querySelector(".zero").click();
+    if(e.key === ".") document.querySelector(".decimal").click();
+    if(e.key === "+") document.querySelector(".addition").click();
+    if(e.key === "-") document.querySelector(".subtraction").click();
+    if(e.key === "*") document.querySelector(".multiplication").click();
+    if(e.key === "/") document.querySelector(".division").click();
+    if(e.key === "%") document.querySelector(".mod").click();
+    if(e.key === "=") document.querySelector(".equal").click();
+    if(e.key === "Enter") document.querySelector(".equal").click();
+    if(e.key === "Backspace") document.querySelector(".bc").click();
+    if(e.key === "Delete") document.querySelector(".ac").click();
+    if(e.key === "Escape") document.querySelector(".ac").click();
+    if(e.key === "F9") document.querySelector(".plusMinus").click();
+});
+/***************************************/
