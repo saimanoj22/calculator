@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Tinos&display=swap');
+
+*{
+    font-family: 'Tinos', serif;
+}
+
 body{
     margin: 0px;
     display: flex;
@@ -19,33 +25,34 @@ main{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 25px;
-    gap: 55px;
+    padding: 20px;
+    gap: 35px;
     border-radius: 35px;
+    width: 250px;
 }
 
 .textArea{
-    margin: 10px 0px 30px 0px;
+    margin: 5px 0px 20px 0px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .count{
-    width: 320px;
+    width: 250px;
     min-height: 30px;
     text-align: right;
     color: white;
-    font-size: 25px;
+    font-size: 21px;
     word-wrap: break-word;
 }
 
 .answer{
-    width: 320px;
+    width: 250px;
     min-height: 60px;
     text-align: right;
     color: white;
-    font-size: 50px;
+    font-size: 40px;
     word-wrap: break-word;
 }
 
@@ -53,10 +60,10 @@ main{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    row-gap: 20px;
-    column-gap: 0px;
+    row-gap: 15px;
+    column-gap: auto;
     z-index: 1;
-    padding: 0px 0px 35px 0px;
+    padding: 0px 0px 15px 0px;
 }
 
 button{
@@ -68,10 +75,11 @@ button{
     box-shadow: rgba(0, 0, 0, 1) 0px 3px 5px 1px;
     color: white;
     background-color: hsl(0, 0%, 15%, 1);
-    font-size: 17px;
-    width: 50px;
-    height: 50px;
+    font-size: 13px;
+    width: 40px;
+    height: 40px;
     font-weight: 800;
+    margin: 0px;
 }
 
 .number:hover, .plusMinus:hover {
@@ -100,8 +108,8 @@ button{
 
 .equal{
     background-color: rgb(221, 105, 105);
-    width: 80px;
-    height: 80px;
+    width: 65px;
+    height: 65px;
     font-weight: 800;
     font-size: 26px;
 }
@@ -116,11 +124,11 @@ button{
 
 .rectangle{
     background-color: black;
-    width: 120px;
-    height: 550px;
-    transform: translate(125px, -15px);
+    width: 90px;
+    height: 430px;
+    transform: translate(100px, -15px);
     z-index: 0;
-    margin-top: -625px;
+    margin-top: -470px;
     border-radius: 120px 0px 0px 120px;
 }
 
@@ -134,11 +142,11 @@ footer{
     justify-content: center;
     align-items: center;
     gap:8px;
-    font-size:24px;
+    font-size:20px;
     background-color: #f2db14;
 }
 
 .github{
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
 }
